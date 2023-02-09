@@ -7,7 +7,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace LiftOff_Project.Migrations
 {
-    [DbContext(typeof(SongDbContext))]
+    [DbContext(typeof(ApplictaionDbContext))]
     partial class ApplicationDbContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)

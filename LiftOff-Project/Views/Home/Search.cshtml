@@ -1,6 +1,11 @@
-﻿@{
-    ViewData["Title"] = "Search";
-}
-<h1>@ViewData["Title"]</h1>
+﻿
+<h1>Search</h1>
 
-<p>Use this page to detail your site's privacy policy.</p>
+<form asp-controller="Song" asp-action="Search">
+    <p>
+        Artist: <input type="text" name="ArtistSearch" />
+        <input type="submit" value="Search" />
+        Title: <input type="text" name="TitleSearch" />
+        <input type="submit" value="Search" />
+    </p>
+</form>

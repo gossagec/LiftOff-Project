@@ -1,5 +1,8 @@
-﻿@using LiftOff_Project.Models;
-@model List<Song>
+﻿@model IEnumerable<LiftOff_Project.Models.Song>;
+
+@{
+    ViewData["Title"] = "Index";
+}
 
 <h1>Song List</h1>
 
@@ -13,7 +16,7 @@
     {
         <tr>
             <td>@song.Artist</td>
-            <td>@song.Title</td>
+            <td>@Html.DisplayFor(modelItem => song.Title)</td>
         </tr>
     }
 </table>

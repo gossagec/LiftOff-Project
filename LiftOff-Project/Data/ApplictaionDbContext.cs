@@ -4,10 +4,10 @@ using Microsoft.EntityFrameworkCore;
 
 namespace LiftOff_Project.Data
 {
-    public class SongDbContext : IdentityDbContext
+    public class ApplictaionDbContext : IdentityDbContext
     {
         public DbSet<Song> Songs { get; set; }
-        public SongDbContext(DbContextOptions<SongDbContext> options) : base(options)
+        public ApplictaionDbContext(DbContextOptions<ApplictaionDbContext> options) : base(options)
         {
         }
     }

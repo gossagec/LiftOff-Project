@@ -5,15 +5,16 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace LiftOff_Project.Controllers
 {
-    public class Home : Controller
+    public class HomeController : Controller
     {
-        private readonly ILogger<Home> _logger;
+        private readonly ILogger<HomeController> _logger;
 
-        public Home(ILogger<Home> logger)
+        public HomeController(ILogger<HomeController> logger)
         {
             _logger = logger;
         }
@@ -22,9 +23,9 @@ namespace LiftOff_Project.Controllers
         {
             return View();
         }
-
+        
         [HttpGet]
-        [Route ("/HomeController/Search")]
+        [Route("/Home/Search")]
         public IActionResult Search()
         {
             return View();
