@@ -6,51 +6,57 @@ using System.Linq;
 using System.Threading.Tasks;
 using System;
 using Microsoft.EntityFrameworkCore;
+using MySql.Data.MySqlClient;
+using Microsoft.Extensions.Configuration;
 
 namespace LiftOff_Project.Controllers
 {
     public class SongController : Controller
     {
         private ApplictaionDbContext context;
-        public SongController(ApplictaionDbContext dbContext)
+        private readonly IConfiguration _configuration;
+
+        public SongController(ApplictaionDbContext dbContext, IConfiguration configuration)
         {
             context = dbContext;
+            _configuration = configuration;
         }
 
-        public async Task<IActionResult> Index()
+        public IActionResult Index()
         {
-            return View(await context.Songs.ToListAsync());
-        }
-        
-        [HttpGet]
-        [Route("/Song/details")]
-        public async Task<IActionResult> Details(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-            var songs = await context.Songs
-                .FirstOrDefaultAsync(m => m.SongId == id);
-            if (songs == null)
-            {
-                return NotFound();
-            }
+            List<Song> songs = context.Songs.ToList();
             return View(songs);
         }
 
-        [HttpGet]
-        
-        public async Task<IActionResult> Search(string searchString)
+        private List<Song> GetSongs()
         {
-            var songs = from m in context.Songs
-                        select m;
-            if (!String.IsNullOrEmpty(searchString))
+            List<Song> songs = new List<Song>();
+
+            string connectionString = _configuration.GetConnectionString("DeafaultConnection");
+
+            using (MySqlConnection connection = new MySqlConnection(connectionString))
             {
-                songs = songs.Where(s => s.Title.Contains(searchString));
+                connection.Open();
+
+                using (MySqlCommand command = new MySqlCommand("SELECT * FROM songs", connection))
+                {
+                    using (MySqlDataReader reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            songs.Add(new Song
+                            {
+                                SongId = reader.GetInt32("SongId"),
+                                Artist = reader.GetString("Artist"),
+                                Title = reader.GetString("Title"),
+                                Link = reader.GetString("Link"),
+                                Lyrics = reader.GetString("Lyrics")
+                            });
+                        }
+                    }
+                }
             }
-            
-            return View(await songs.ToListAsync());
+            return songs;
         }
     }
 }

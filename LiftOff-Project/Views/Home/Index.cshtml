@@ -6,17 +6,26 @@
 
 <h1>Song List</h1>
 
-<table class="table">
-    <tr>
+@if (Model != null && Model.Any())
+{
+    <table class="table">
+        <tr>
         <th>Artist</th>
         <th>Title</th>
     </tr>
 
-    @foreach (var song in Model)
-    {
-        <tr>
-            <td>@song.Artist</td>
-            <td>@Html.DisplayFor(modelItem => song.Title)</td>
-        </tr>
-    }
+    
+        @foreach (var song in Model)
+        {
+            <tr>
+                <td>@song.Artist</td>
+                <td>@song.Title</td>
+            </tr>
+        }
+    
 </table>
+}
+else
+{
+    <p>No Songs Found</p>
+}
