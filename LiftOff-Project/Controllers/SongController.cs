@@ -13,18 +13,18 @@ namespace LiftOff_Project.Controllers
 {
     public class SongController : Controller
     {
-        private ApplictaionDbContext context;
+        private ApplicationDbContext _context;
         private readonly IConfiguration _configuration;
 
-        public SongController(ApplictaionDbContext dbContext, IConfiguration configuration)
+        public SongController(ApplicationDbContext dbContext, IConfiguration configuration)
         {
-            context = dbContext;
+            _context = dbContext;
             _configuration = configuration;
         }
 
         public IActionResult Index()
         {
-            List<Song> songs = context.Songs.ToList();
+            List<Song> songs = _context.Songs.ToList();
             return View(songs);
         }
 

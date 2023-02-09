@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace LiftOff_Project.Migrations
 {
-    [DbContext(typeof(ApplictaionDbContext))]
+    [DbContext(typeof(ApplicationDbContext))]
     [Migration("20221215203736_SongMigration")]
     partial class SongMigration
     {

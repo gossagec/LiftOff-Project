@@ -1,4 +1,5 @@
-﻿using LiftOff_Project.Models;
+﻿using LiftOff_Project.Migrations;
+using LiftOff_Project.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
@@ -19,6 +20,7 @@ namespace LiftOff_Project.Controllers
             _logger = logger;
         }
 
+        [HttpGet]
         public IActionResult Index()
         {
             return View();

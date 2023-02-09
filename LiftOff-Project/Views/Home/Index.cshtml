@@ -10,20 +10,18 @@
 {
     <table class="table">
         <tr>
-        <th>Artist</th>
-        <th>Title</th>
-    </tr>
+            <th>Artist</th>
+            <th>Title</th>
+        </tr>
 
-    
         @foreach (var song in Model)
         {
             <tr>
-                <td>@song.Artist</td>
-                <td>@song.Title</td>
+                <td>@Html.DisplayNameFor(model => model.Artist)</td>
+                <td>@Html.DisplayNameFor(model => model.Title)</td>
             </tr>
         }
-    
-</table>
+    </table>
 }
 else
 {
