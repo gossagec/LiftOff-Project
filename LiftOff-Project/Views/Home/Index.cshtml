@@ -9,25 +9,25 @@
 </header>
 
 <body>
-    @if (Model != null && Model.Any())
-    {
-        <table class="table">
-            <tr>
-                <th>Artist</th>
-                <th>Title</th>
-            </tr>
+    <form asp-controller="Home" asp-action="Index" method="get">
+        <p>
+            <input type="text" name="SearchString" />
+            <input type="submit" value="Search" />
+        </p>
+    </form>
 
-            @foreach (var song in Model)
-            {
-                <tr>
-                    <td>@song.Artist</td>
-                    <td>@song.Title</td>
-                </tr>
-            }
-        </table>
-    }
-    else
-    {
-        <p>No Songs Found</p>
-    }
+    <table class="table">
+        <tr>
+            <th>Artist</th>
+            <th>Title</th>
+        </tr>
+
+        @foreach (var song in Model)
+        {
+            <tr>
+                <td>@song.Artist</td>
+                <td>@song.Title</td>
+            </tr>
+        }
+    </table>
 </body>

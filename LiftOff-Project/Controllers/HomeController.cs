@@ -28,24 +28,16 @@ namespace LiftOff_Project.Controllers
         [HttpGet]
         public async Task<IActionResult> Index(string searchString)
         {
-            var movies = from m in _context.Songs
+            var songs = from m in _context.Songs
                          select m;
 
             if (!String.IsNullOrEmpty(searchString))
             {
-                movies = movies.Where(s => s.Title.Contains(searchString));
+                songs = songs.Where(s => s.Artist.Contains(searchString) || s.Title.Contains(searchString));
             }
 
-            return View(await movies.ToListAsync());
+            return View(await songs.ToListAsync());
         }
-
-        [HttpGet]
-        [Route("/Home/Search")]
-        public IActionResult Search()
-        {
-            return View();
-        }
-
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
