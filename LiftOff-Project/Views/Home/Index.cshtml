@@ -4,26 +4,30 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Song List</h1>
+<header>
+    <h1>Song List</h1>
+</header>
 
-@if (Model != null && Model.Any())
-{
-    <table class="table">
-        <tr>
-            <th>Artist</th>
-            <th>Title</th>
-        </tr>
-
-        @foreach (var song in Model)
-        {
+<body>
+    @if (Model != null && Model.Any())
+    {
+        <table class="table">
             <tr>
-                <td>@Html.DisplayNameFor(model => model.Artist)</td>
-                <td>@Html.DisplayNameFor(model => model.Title)</td>
+                <th>Artist</th>
+                <th>Title</th>
             </tr>
-        }
-    </table>
-}
-else
-{
-    <p>No Songs Found</p>
-}
+
+            @foreach (var song in Model)
+            {
+                <tr>
+                    <td>@song.Artist</td>
+                    <td>@song.Title</td>
+                </tr>
+            }
+        </table>
+    }
+    else
+    {
+        <p>No Songs Found</p>
+    }
+</body>
