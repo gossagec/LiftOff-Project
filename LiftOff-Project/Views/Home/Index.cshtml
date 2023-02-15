@@ -18,15 +18,19 @@
 
     <table class="table">
         <tr>
-            <th>Artist</th>
             <th>Title</th>
+            <th>Artist</th>
+            <th>Genre</th>
+            <th>Year</th>
         </tr>
 
         @foreach (var song in Model)
         {
             <tr>
-                <td>@song.Artist</td>
                 <td>@song.Title</td>
+                <td>@song.Artist</td>
+                <td>@song.Genre</td>
+                <td>@song.Year</td>
             </tr>
         }
     </table>

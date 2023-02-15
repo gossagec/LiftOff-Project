@@ -55,8 +55,8 @@ namespace LiftOff_Project.Migrations
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
                     Artist = table.Column<string>(nullable: true),
                     Title = table.Column<string>(nullable: true),
-                    Link = table.Column<string>(nullable: true),
-                    Lyrics = table.Column<string>(nullable: true)
+                    Genre = table.Column<string>(nullable: true),
+                    Year = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
                 {

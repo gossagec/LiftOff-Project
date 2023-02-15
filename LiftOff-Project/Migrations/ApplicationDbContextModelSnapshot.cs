@@ -26,10 +26,10 @@ namespace LiftOff_Project.Migrations
                     b.Property<string>("Artist")
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
 
-                    b.Property<string>("Link")
+                    b.Property<string>("Genre")
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
 
-                    b.Property<string>("Lyrics")
+                    b.Property<string>("Year")
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.Property<string>("Title")
