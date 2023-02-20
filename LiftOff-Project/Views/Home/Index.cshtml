@@ -9,14 +9,38 @@
 </header>
 
 <body>
-    <form asp-controller="Home" asp-action="Index" method="get">
-        <p>
-            <input type="text" name="SearchString" />
-            <input type="submit" value="Search" />
-        </p>
-    </form>
-
+    
     <table class="table">
+        <tr>
+            <th>
+                <form asp-controller="Home" asp-action="Index" method="get">
+                    <p>
+                        <input type="text" name="SearchString" />
+                        <input type="submit" value="Search" />
+                    </p>
+                </form>
+            </th>
+            <th></th>
+            <th></th>
+            <th>
+                <form asp-controller="Home" asp-action="EraChosen" method="get">
+                    <fieldset>
+                        Song Era:
+                        <select id="SongEra" name="SongEra">
+                            <option value=""></option>
+                            <option value="0">1970's</option>
+                            <option value="1">1980's</option>
+                            <option value="2">1990's</option>
+                            <option value="3">2000's</option>
+                            <option value="4">2010's</option>
+                        </select>
+                        <p>
+                            <input type="submit" value="Submit" />
+                        </p>
+                    </fieldset>
+                </form>
+            </th>
+        </tr>
         <tr>
             <th>Title</th>
             <th>Artist</th>

@@ -11,6 +11,10 @@ using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Routing;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.AspNetCore.Http;
+using Microsoft.CodeAnalysis.Options;
+using Microsoft.VisualBasic;
 
 namespace LiftOff_Project.Controllers
 {
@@ -28,16 +32,38 @@ namespace LiftOff_Project.Controllers
         [HttpGet]
         public async Task<IActionResult> Index(string searchString)
         {
-            var songs = from m in _context.Songs
-                         select m;
+            var songs = from s in _context.Songs
+                        select s;
 
-            if (!String.IsNullOrEmpty(searchString))
+            if (!string.IsNullOrEmpty(searchString))
             {
-                songs = songs.Where(s => s.Artist.Contains(searchString) || s.Title.Contains(searchString));
+                songs = songs.Where(p => p.Artist.Contains(searchString) || s.Title.Contains(searchString));
             }
 
             return View(await songs.ToListAsync());
         }
+
+        private IActionResult SortEra()
+        {
+            var songs = from s in _context.Songs
+                        select s;
+            if (songs.Year => 1970 || songs.Year < 1980)
+            {
+                
+            }
+            return View();
+        }
+        
+        /*public async Task<IActionResult> EraChosen()
+        {
+            var songs = from s in _context.Songs
+                        select s;
+            if ()
+            {
+                songs = songs.Where(s => s.Year.Equals(1970));
+            }
+            return View(await songs.ToListAsync());
+        }*/
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
