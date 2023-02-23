@@ -22,6 +22,14 @@ namespace LiftOff_Project.Controllers
     {
         private readonly ILogger<HomeController> _logger;
         private ApplicationDbContext _context;
+        object[] _eras =
+            {
+                new { key = 1, name = "1970's", start = 1970, end = 1979 },
+                new { key = 2, name = "1980's", start = 1980, end = 1989 },
+                new { key = 3, name = "1990's", start = 1990, end = 1999 },
+                new { key = 4, name = "2000's", start = 2000, end = 2009 },
+                new { key = 5, name = "2010's", start = 2010, end = 2019 }
+            };
 
         public HomeController(ILogger<HomeController> logger, ApplicationDbContext context)
         {
@@ -37,31 +45,33 @@ namespace LiftOff_Project.Controllers
 
             if (!string.IsNullOrEmpty(searchString))
             {
-                songs = songs.Where(p => p.Artist.Contains(searchString) || s.Title.Contains(searchString));
+                songs = songs.Where(p => p.Artist.Contains(searchString) || p.Title.Contains(searchString));
             }
 
             return View(await songs.ToListAsync());
         }
 
-        private IActionResult SortEra()
+        [HttpGet]
+        public async Task<IActionResult> EraChosen(string yearString)
         {
             var songs = from s in _context.Songs
                         select s;
-            if (songs.Year => 1970 || songs.Year < 1980)
+
+            if (!string.IsNullOrEmpty(yearString))
             {
-                
+                songs = songs.Where(p => p.Year.ToString().Contains(yearString));
             }
-            return View();
+
+            return View(await songs.ToListAsync());
         }
-        
+
         /*public async Task<IActionResult> EraChosen()
         {
             var songs = from s in _context.Songs
                         select s;
-            if ()
-            {
-                songs = songs.Where(s => s.Year.Equals(1970));
-            }
+            
+            songs = songs.Where(p => p.Year >= _eras[1].start && p.Year < _eras[1].end);
+
             return View(await songs.ToListAsync());
         }*/
 
